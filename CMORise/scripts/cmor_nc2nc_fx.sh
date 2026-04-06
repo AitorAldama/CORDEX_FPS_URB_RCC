@@ -253,7 +253,7 @@ for ((run=0;run<=num_run-1;run++)); do
                 -a domain,global,d,, \
                 -a comment,global,d,, \
                 -a model_id,global,d,, \
-		-a driving_model_id,global,d,, \
+				-a driving_model_id,global,d,, \
                 -a institute_id,global,d,, \
                 -a activity_id,global,o,c,"$activity_id" \
                 -a contact,global,o,c,"$contact" \
@@ -270,7 +270,7 @@ for ((run=0;run<=num_run-1;run++)); do
                 -a experiment,global,o,c,"$experiment" \
                 -a frequency,global,o,c,"fx" \
                 -a grid,global,o,c,"$grid_info" \
-	  	-a institution_id,global,o,c,"$institution_id" \
+	  			-a institution_id,global,o,c,"$institution_id" \
                 -a institution,global,o,c,"$institution" \
                 -a mip_era,global,o,c,"CMIP6" -h $file_out
 
