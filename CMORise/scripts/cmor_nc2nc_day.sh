@@ -285,6 +285,10 @@ for ((run=0;run<=num_run-1;run++)); do
                                     $cdo -L cat -daymean -selname,$harm_name,depth -seldate,$f_date,$l_date $file_in $file_tmp0;;
                                 taspav | tasgree | tascan | hurscan | husscan | sfcWindcan)
                                     $cdo -L cat -daymean -selname,$harm_name,height -seldate,$f_date,$l_date $file_in $file_tmp0;;
+								tasmax)
+                                    $cdo -L cat -daymax -selname,$harm_name -seldate,$f_date,$l_date $file_in $file_tmp0;;
+                                tasmin)
+                                    $cdo -L cat -daymin -selname,$harm_name -seldate,$f_date,$l_date $file_in $file_tmp0;;
                                 *)
                                     $cdo -L cat -daymean -selname,$harm_name -seldate,$f_date,$l_date $file_in $file_tmp0;;
                             esac
@@ -313,7 +317,7 @@ for ((run=0;run<=num_run-1;run++)); do
                     # ---  TIME SHIFT  ---
                     # --------------------
                     case ${var_in[$var]} in
-			pr | prc | prsn | evspsbl | rsds | rlds | hfls | hfss | clt | tasmax | tasmin )
+						pr | prc | prsn | evspsbl | rsds | rlds | hfls | hfss | clt | tasmax | tasmin )
 
                             sh_time=$(( 0 ));;
 
