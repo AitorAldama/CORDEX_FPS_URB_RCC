@@ -205,9 +205,9 @@ for ((run=0;run<=num_run-1;run++)); do
                             
                                 file_in=$path_in$yy'/'${mm_s[$mm]}'/01/00/'$harm_name'_sfx_'$domain_hclim'_'$exp_name'_1hr_'$yy${mm_s[$mm]}'010000-'$yynext${mm_s[$mm+1]}'010000.nc';;
 
-			    anthroheat )
+			    			anthroheat )
 
-				python3 $DIRECTORY_PYTHON/anthroheat.py $path_in$yy'/'${mm_s[$mm]}'/01/00/'
+								python3 $DIRECTORY_PYTHON/anthroheat.py $path_in$yy'/'${mm_s[$mm]}'/01/00/'
 
                                 file_in=$path_in$yy'/'${mm_s[$mm]}'/01/00/'$harm_name'_corrected_sfx_'$domain_hclim'_'$exp_name'_1hr_'$yy${mm_s[$mm]}'010000-'$yynext${mm_s[$mm+1]}'010000.nc';;
 				
@@ -305,13 +305,13 @@ for ((run=0;run<=num_run-1;run++)); do
                     echo
                     end_ct="$(date +%s)"
 
-		    # ---------------------
+		    		# ---------------------
                     # --- RENAME VAR    ---
                     # ---------------------
 
-		    if [[ "$harm_name" != "${var_in[$var]}" ]]; then
+		    		if [[ "$harm_name" != "${var_in[$var]}" ]]; then
                     	ncrename -v $harm_name,${var_in[$var]} -h $file_tmp0
-	            fi
+	            	fi
 
                     # --------------------
                     # ---  TIME SHIFT  ---
@@ -419,7 +419,7 @@ for ((run=0;run<=num_run-1;run++)); do
                     case ${var_in[$var]} in
                         taswater | tastown | taspav | tasgree \
                             | tswater | tsroof | tsgree | tspav | tsskin \
-			    | tascan | hurscan | husscan | sfcWindcan | anthroheat )
+			    			| tascan | hurscan | husscan | sfcWindcan | anthroheat )
                             ncatted -a patch,${var_in[$var]},o,c,"${area}" -h $file_out;;
                     esac
 
@@ -481,45 +481,45 @@ for ((run=0;run<=num_run-1;run++)); do
                         -a domain,global,d,, \
                         -a comment,global,d,, \
                         -a model_id,global,d,, \
-			-a driving_model_id,global,d,, \
-		        -a institute_id,global,d,, \
-		        -a activity_id,global,o,c,"$activity_id" \
-		        -a contact,global,o,c,"$contact" \
-		        -a creation_date,global,o,c,"$( date +%Y'-'%m'-'%d'-T'%T'Z')" \
-		        -a domain_id,global,o,c,"$domain_id" \
-		        -a domain,global,o,c,"$domain" \
-		        -a driving_experiment_id,global,o,c,"$driving_experiment_id" \
-		        -a driving_experiment,global,o,c,"$driving_experiment" \
-		        -a driving_institution_id,global,o,c,"$driving_institution_id" \
-		        -a driving_institution,global,o,c,"$driving_institution" \
-		        -a driving_source_id,global,o,c,"$driving_source_id" \
-		        -a driving_variant_label,global,o,c,"$driving_variant_label" \
-		        -a experiment_id,global,o,c,"$experiment_id" \
-		        -a experiment,global,o,c,"$experiment" \
-		        -a frequency,global,o,c,"$freq" \
-		        -a grid,global,o,c,"$grid_info" \
-		  	-a institution_id,global,o,c,"$institution_id" \
-		        -a institution,global,o,c,"$institution" \
-		        -a mip_era,global,o,c,"CMIP6" -h $file_out
+						-a driving_model_id,global,d,, \
+				        -a institute_id,global,d,, \
+				        -a activity_id,global,o,c,"$activity_id" \
+				        -a contact,global,o,c,"$contact" \
+				        -a creation_date,global,o,c,"$( date +%Y'-'%m'-'%d'-T'%T'Z')" \
+				        -a domain_id,global,o,c,"$domain_id" \
+				        -a domain,global,o,c,"$domain" \
+				        -a driving_experiment_id,global,o,c,"$driving_experiment_id" \
+				        -a driving_experiment,global,o,c,"$driving_experiment" \
+				        -a driving_institution_id,global,o,c,"$driving_institution_id" \
+				        -a driving_institution,global,o,c,"$driving_institution" \
+				        -a driving_source_id,global,o,c,"$driving_source_id" \
+				        -a driving_variant_label,global,o,c,"$driving_variant_label" \
+				        -a experiment_id,global,o,c,"$experiment_id" \
+				        -a experiment,global,o,c,"$experiment" \
+				        -a frequency,global,o,c,"$freq" \
+				        -a grid,global,o,c,"$grid_info" \
+				  		-a institution_id,global,o,c,"$institution_id" \
+				        -a institution,global,o,c,"$institution" \
+				        -a mip_era,global,o,c,"CMIP6" -h $file_out
 
-		    if [[ "$nested" == "TRUE" ]]; then
-		        ncatted -a parent_source,global,o,c,"$parent_source" \
-		        -a parent_source_id,global,o,c,"$parent_source_id" \
-		        -a parent_source_type,global,o,c,"$parent_source_type" \
-		        -a parent_domain_id,global,o,c,"$parent_domain_id" -h $file_out
-		    fi
+				    if [[ "$nested" == "TRUE" ]]; then
+				        ncatted -a parent_source,global,o,c,"$parent_source" \
+				        -a parent_source_id,global,o,c,"$parent_source_id" \
+				        -a parent_source_type,global,o,c,"$parent_source_type" \
+				        -a parent_domain_id,global,o,c,"$parent_domain_id" -h $file_out
+				    fi
 
-		    ncatted -a product,global,o,c,"model-output" \
-		        -a project_id,global,o,c,"$project_id" \
-		        -a realm,global,o,c,"$realm" \
-		        -a source_id,global,o,c,"$source_id" \
-		        -a source,global,o,c,"$source" \
-		        -a source_type,global,o,c,"$source_type" \
-		        -a version_realization,global,o,c,"$experiment_version" \
-		        -a variable_id,global,o,c,"${var_in[$var]}" \
-                        -a tracking_id,global,o,c,"$(python3 $DIRECTORY_PYTHON/get_uuid.py)" \
-		        -a license,global,o,c,"https://cordex.org/data-access/cordex-cmip6-data/cordex-cmip6-terms-of-use" \
-		        -a comment,global,o,c,"$comment" -h $file_out
+				    ncatted -a product,global,o,c,"model-output" \
+				        -a project_id,global,o,c,"$project_id" \
+				        -a realm,global,o,c,"$realm" \
+				        -a source_id,global,o,c,"$source_id" \
+				        -a source,global,o,c,"$source" \
+				        -a source_type,global,o,c,"$source_type" \
+				        -a version_realization,global,o,c,"$experiment_version" \
+				        -a variable_id,global,o,c,"${var_in[$var]}" \
+		                -a tracking_id,global,o,c,"$(python3 $DIRECTORY_PYTHON/get_uuid.py)" \
+				        -a license,global,o,c,"https://cordex.org/data-access/cordex-cmip6-data/cordex-cmip6-terms-of-use" \
+				        -a comment,global,o,c,"$comment" -h $file_out
 
                     # Create var folder if it's not exits
                     if [ ! -d "${path_out}/${freq}/${var_in[$var]}" ]; then
